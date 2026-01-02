@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: rgb(241, 241, 251);
+            color: #000;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 1.25rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .sidebar {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            width: 240px;
+            height: fit-content;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h2 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #000;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background-color: rgb(241, 241, 251);
+            transform: translateX(4px);
+        }
+
+        .nav-links a.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .content-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .content-card p {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card-small {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .card-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-small h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .card-small p {
+            color: #666;
+            font-size: 0.925rem;
+        }
+
+        @media (max-width: 968px) {
+            .main-wrapper {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.25rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                flex-direction: column;
+            }
+
+            .nav-links a {
+                text-align: left;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Learning Platform</h1>
+        </header>
+
+        <div class="main-wrapper">
+            <aside class="sidebar">
+                <h2>Navigation</h2>
+                <ul class="nav-links">
+                    <li><a href="#chat">Chat</a></li>
+                    <li><a href="#summarizer" class="active">Summarizer</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                    <li><a href="#learn">Learn</a></li>
+                </ul>
+            </aside>
+
+            <main>
+                <div class="content-card">
+                    <h2>Welcome to Your Learning Dashboard</h2>
+                    <p>
+                        Explore powerful AI tools designed to enhance your learning experience.
+                        Use the navigation to access different features and start your journey.
+                    </p>
+                    <a href="#get-started" class="button">Get Started</a>
+                </div>
+
+                <div class="grid">
+                    <div class="card-small">
+                        <h3>Chat</h3>
+                        <p>Have conversations with AI to get instant answers and explanations on any topic.</p>
+                    </div>
+
+                    <div class="card-small">
+                        <h3>Summarizer</h3>
+                        <p>Quickly summarize long articles, essays, and documents into concise bullet points.</p>
+                    </div>
+
+                    <div class="card-small">
+                        <h3>Quiz</h3>
+                        <p>Test your knowledge with AI-generated quizzes tailored to your learning needs.</p>
+                    </div>
+
+                    <div class="card-small">
+                        <h3>Learn</h3>
+                        <p>Access structured learning paths and interactive tutorials to master new skills.</p>
+                    </div>
+                </div>
+
+                <div class="content-card" style="margin-top: 1.5rem;">
+                    <h2>Recent Activity</h2>
+                    <p>Your learning history and progress will appear here. Start exploring to see your activity.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
